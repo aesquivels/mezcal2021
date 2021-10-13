@@ -1,0 +1,13 @@
+func:->
+{
+	statementFunction;
+}
+
+enter:->{
+	hola;
+	QueTalEstas;
+	func();
+	MuyBienYTu;
+	YoPerfectamente;
+	NuevamenteYo;
+}
