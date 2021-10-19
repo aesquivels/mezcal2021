@@ -1,32 +1,39 @@
 %option noyywrap
 %{
 	#include "grammar.tab.h"
-	#include "SyntaxTree/Includes.hpp"
 %}
 
 DIGIT [0-9]
 ALPHA [a-zA-Z]
-NAME {ALPHA}({DIGIT}*{ALPHA}*)+
+NAME {ALPHA}([0-9]*{ALPHA}*)+
 WHITESPACE [ \r\t\v\f]
 LINEFEED \n
-SINGLECOMMENT {SLASH}{SLASH}{}
+SINGLECOMMENT {SLASH}{SLASH}({DOT}*{WHITESPACE}*)+{LINEFEED}
+MULTILINECOMMENT {SLASH}{WILDCARD}({DOT}*{WHITESPACE}*{LINEFEED}*)+{WILDCARD}{SLASH}
 SLASH [/]
+DOT .
+WILDCARD [*]
+QUOTES [\"]
 
 %%
 
-{NAME}		{ 
+"puts"			{ return PUTS; }
+{NAME}			{ 
 			//yylval = new compiler::Name(yytext);
 			return NAME; 
-		}
-":"		{ return COLON; }
-";"		{ return SEMICOLON; }
-"->"		{ return RIGHT_ARROW; }
-"{"		{ return LEFT_CURLY_BRACE; }
-"}"		{ return RIGHT_CURLY_BRACE; }
-"("		{ return LEFT_PARENTHESIS; }
-")"		{ return RIGHT_PARENTHESIS; }
+			}
+{QUOTES}		{ return QUOTES; }
+{SINGLECOMMENT}         { return SINGLECOMMENT; }
+{MULTILINECOMMENT}      { return MULTILINECOMMENT; }
+":"			{ return COLON; }
+";"			{ return SEMICOLON; }
+"->"			{ return RIGHT_ARROW; }
+"{"			{ return LEFT_CURLY_BRACE; }
+"}"			{ return RIGHT_CURLY_BRACE; }
+"("			{ return LEFT_PARENTHESIS; }
+")"			{ return RIGHT_PARENTHESIS; }
 {WHITESPACE}
-{LINEFEED}	++yylineno;
+{LINEFEED}		++yylineno;
 
 %%
 

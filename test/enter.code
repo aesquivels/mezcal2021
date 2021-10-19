@@ -1,11 +1,4 @@
-func:->
-{}
-
 enter:->{
-	hola;
-	QueTalEstas;
-	func();
-	MuyBienYTu;
-	YoPerfectamente;
-	NuevamenteYo;
+	puts "Hola";
+	puts "QueTal";
 }

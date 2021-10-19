@@ -67,7 +67,11 @@ extern int yydebug;
     RIGHT_CURLY_BRACE = 262,       /* RIGHT_CURLY_BRACE  */
     SEMICOLON = 263,               /* SEMICOLON  */
     LEFT_PARENTHESIS = 264,        /* LEFT_PARENTHESIS  */
-    RIGHT_PARENTHESIS = 265        /* RIGHT_PARENTHESIS  */
+    RIGHT_PARENTHESIS = 265,       /* RIGHT_PARENTHESIS  */
+    SINGLECOMMENT = 266,           /* SINGLECOMMENT  */
+    MULTILINECOMMENT = 267,        /* MULTILINECOMMENT  */
+    PUTS = 268,                    /* PUTS  */
+    QUOTES = 269                   /* QUOTES  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif

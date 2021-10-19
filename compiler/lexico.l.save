@@ -1,0 +1,36 @@
+%option noyywrap
+%{
+	#include "grammar.tab.h"
+%}
+
+DIGIT [0-9]
+ALPHA [a-zA-Z]
+NAME {ALPHA}({DIGIT}*{ALPHA}*)+
+WHITESPACE [ \r\t\v\f]
+LINEFEED \n
+SINGLECOMMENT {SLASH}{SLASH}({DOT}*{WHITESPACE}*)+{LINEFEED}
+SLASH [/]
+DOT [.]
+
+%%
+
+{NAME}		{ 
+			//yylval = new compiler::Name(yytext);
+			return NAME; 
+		}
+{SINGLECOMMENT} { return SINGLECOMMENT; }
+":"		{ return COLON; }
+";"		{ return SEMICOLON; }
+"->"		{ return RIGHT_ARROW; }
+"{"		{ return LEFT_CURLY_BRACE; }
+"}"		{ return RIGHT_CURLY_BRACE; }
+"("		{ return LEFT_PARENTHESIS; }
+")"		{ return RIGHT_PARENTHESIS; }
+{WHITESPACE}
+{LINEFEED}	++yylineno;
+
+%%
+
+#include <stdio.h>
+
+
