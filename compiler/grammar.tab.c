@@ -124,15 +124,15 @@ enum yysymbol_kind_t
   YYSYMBOL_MULTILINECOMMENT = 12,          /* MULTILINECOMMENT  */
   YYSYMBOL_PUTS = 13,                      /* PUTS  */
   YYSYMBOL_QUOTES = 14,                    /* QUOTES  */
-  YYSYMBOL_YYACCEPT = 15,                  /* $accept  */
-  YYSYMBOL_input = 16,                     /* input  */
-  YYSYMBOL_function_list = 17,             /* function_list  */
-  YYSYMBOL_function = 18,                  /* function  */
-  YYSYMBOL_statements = 19,                /* statements  */
-  YYSYMBOL_statement = 20,                 /* statement  */
-  YYSYMBOL_std_output = 21,                /* std_output  */
-  YYSYMBOL_expression = 22,                /* expression  */
-  YYSYMBOL_quotes = 23,                    /* quotes  */
+  YYSYMBOL_CHARACTERS_BLOCK = 15,          /* CHARACTERS_BLOCK  */
+  YYSYMBOL_YYACCEPT = 16,                  /* $accept  */
+  YYSYMBOL_input = 17,                     /* input  */
+  YYSYMBOL_function_list = 18,             /* function_list  */
+  YYSYMBOL_function = 19,                  /* function  */
+  YYSYMBOL_statements = 20,                /* statements  */
+  YYSYMBOL_statement = 21,                 /* statement  */
+  YYSYMBOL_std_output = 22,                /* std_output  */
+  YYSYMBOL_expression = 23,                /* expression  */
   YYSYMBOL_characters_block = 24,          /* characters_block  */
   YYSYMBOL_name = 25                       /* name  */
 };
@@ -459,16 +459,16 @@ union yyalloc
 #define YYLAST   19
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  15
+#define YYNTOKENS  16
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  11
+#define YYNNTS  10
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  17
+#define YYNRULES  16
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  30
+#define YYNSTATES  27
 
 /* YYMAXUTOK -- Last valid token kind.  */
-#define YYMAXUTOK   269
+#define YYMAXUTOK   270
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
@@ -508,7 +508,8 @@ static const yytype_int8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7,     8,     9,    10,    11,    12,    13,    14
+       5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
+      15
 };
 
 #if YYDEBUG
@@ -516,7 +517,7 @@ static const yytype_int8 yytranslate[] =
 static const yytype_int8 yyrline[] =
 {
        0,    28,    28,    32,    34,    38,    47,    51,    55,    59,
-      61,    63,    65,    69,    73,    77,    80,    84
+      61,    63,    65,    69,    73,    77,    81
 };
 #endif
 
@@ -535,9 +536,9 @@ static const char *const yytname[] =
   "\"end of file\"", "error", "\"invalid token\"", "NAME", "COLON",
   "RIGHT_ARROW", "LEFT_CURLY_BRACE", "RIGHT_CURLY_BRACE", "SEMICOLON",
   "LEFT_PARENTHESIS", "RIGHT_PARENTHESIS", "SINGLECOMMENT",
-  "MULTILINECOMMENT", "PUTS", "QUOTES", "$accept", "input",
-  "function_list", "function", "statements", "statement", "std_output",
-  "expression", "quotes", "characters_block", "name", YY_NULLPTR
+  "MULTILINECOMMENT", "PUTS", "QUOTES", "CHARACTERS_BLOCK", "$accept",
+  "input", "function_list", "function", "statements", "statement",
+  "std_output", "expression", "characters_block", "name", YY_NULLPTR
 };
 
 static const char *
@@ -553,11 +554,11 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 static const yytype_int16 yytoknum[] =
 {
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
-     265,   266,   267,   268,   269
+     265,   266,   267,   268,   269,   270
 };
 #endif
 
-#define YYPACT_NINF (-12)
+#define YYPACT_NINF (-10)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -571,9 +572,9 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -1,   -12,     3,    -1,     1,   -12,   -12,    -1,     2,   -12,
-       0,   -12,    -3,   -12,   -12,   -12,    -2,   -12,     5,     6,
-       7,   -12,    -1,   -12,   -12,     8,    -2,   -12,   -12,   -12
+      -2,   -10,     2,    -2,    -1,   -10,   -10,    -2,     0,   -10,
+       1,   -10,    -3,   -10,   -10,   -10,    -9,   -10,     3,     4,
+       5,   -10,   -10,   -10,   -10,     6,   -10
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -581,23 +582,21 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       6,    17,     0,     4,     0,     1,     2,     4,     0,     3,
+       6,    16,     0,     4,     0,     1,     2,     4,     0,     3,
        0,     8,     0,     5,    11,    10,     0,     7,     0,     0,
-       0,    15,     0,     9,    12,     0,     0,    16,    14,    13
+       0,    15,    13,     9,    12,     0,    14
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -12,   -12,    10,    15,   -12,   -12,   -12,   -12,    -7,   -12,
-     -11
+     -10,   -10,     8,    13,   -10,   -10,   -10,   -10,   -10,     7
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-       0,     2,     6,     7,    12,    17,    18,    19,    22,    26,
-       4
+       0,     2,     6,     7,    12,    17,    18,    19,    22,     4
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -605,37 +604,37 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-       1,    20,     1,     5,    13,     8,    11,    10,    14,    15,
-      16,    27,    21,    23,    24,     3,    25,     9,    28,    29
+       1,     1,     5,     8,    13,    10,    21,    11,    14,    15,
+      16,    23,    24,     3,    25,     9,    26,     0,     0,    20
 };
 
 static const yytype_int8 yycheck[] =
 {
-       3,    12,     3,     0,     7,     4,     6,     5,    11,    12,
-      13,    22,    14,     8,     8,     0,     9,     7,    10,    26
+       3,     3,     0,     4,     7,     5,    15,     6,    11,    12,
+      13,     8,     8,     0,     9,     7,    10,    -1,    -1,    12
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     3,    16,    18,    25,     0,    17,    18,     4,    17,
-       5,     6,    19,     7,    11,    12,    13,    20,    21,    22,
-      25,    14,    23,     8,     8,     9,    24,    25,    10,    23
+       0,     3,    17,    19,    25,     0,    18,    19,     4,    18,
+       5,     6,    20,     7,    11,    12,    13,    21,    22,    23,
+      25,    15,    24,     8,     8,     9,    10
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    15,    16,    17,    17,    18,    18,    19,    19,    20,
-      20,    20,    20,    21,    22,    23,    24,    25
+       0,    16,    17,    18,    18,    19,    19,    20,    20,    21,
+      21,    21,    21,    22,    23,    24,    25
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_int8 yyr2[] =
 {
        0,     2,     2,     2,     0,     6,     0,     2,     0,     2,
-       1,     1,     2,     4,     3,     1,     1,     1
+       1,     1,     2,     2,     3,     1,     1
 };
 
 
@@ -1104,20 +1103,20 @@ yyreduce:
     {
   case 2: /* input: function function_list  */
 #line 28 "compiler/grammar.y"
-                                                { result = std::string("#include <cstdio>\n #include <iostream>\n using namespace std;") + yyvsp[-1] + yyvsp[0]; }
-#line 1109 "grammar.tab.c"
+                                { result = std::string("#include <cstdio>\n #include <iostream>\n using namespace std;") + yyvsp[-1] + yyvsp[0]; }
+#line 1108 "grammar.tab.c"
     break;
 
   case 3: /* function_list: function function_list  */
 #line 32 "compiler/grammar.y"
                                                 { yyval = yyvsp[-1] + yyvsp[0]; }
-#line 1115 "grammar.tab.c"
+#line 1114 "grammar.tab.c"
     break;
 
   case 4: /* function_list: %empty  */
 #line 34 "compiler/grammar.y"
                                                 { yyval = ""; }
-#line 1121 "grammar.tab.c"
+#line 1120 "grammar.tab.c"
     break;
 
   case 5: /* function: name COLON RIGHT_ARROW LEFT_CURLY_BRACE statements RIGHT_CURLY_BRACE  */
@@ -1129,13 +1128,13 @@ yyreduce:
 			yyval = std::string("\n void ") + "_" + yyvsp[-5] + "()" + "{\n" + yyvsp[-1] + "\n}\n";
 		} 
 	}
-#line 1133 "grammar.tab.c"
+#line 1132 "grammar.tab.c"
     break;
 
   case 6: /* function: %empty  */
 #line 47 "compiler/grammar.y"
                                                 { yyval = ""; }
-#line 1139 "grammar.tab.c"
+#line 1138 "grammar.tab.c"
     break;
 
   case 7: /* statements: statements statement  */
@@ -1143,73 +1142,67 @@ yyreduce:
                              { 
 				yyval = yyvsp[-1] + yyvsp[0];
 				}
-#line 1147 "grammar.tab.c"
+#line 1146 "grammar.tab.c"
     break;
 
   case 8: /* statements: %empty  */
 #line 55 "compiler/grammar.y"
                                                 { yyval = ""; }
-#line 1153 "grammar.tab.c"
+#line 1152 "grammar.tab.c"
     break;
 
   case 9: /* statement: std_output SEMICOLON  */
 #line 59 "compiler/grammar.y"
                              { yyval = yyvsp[-1]; }
-#line 1159 "grammar.tab.c"
+#line 1158 "grammar.tab.c"
     break;
 
   case 10: /* statement: MULTILINECOMMENT  */
 #line 61 "compiler/grammar.y"
                                 { yyval = ""; }
-#line 1165 "grammar.tab.c"
+#line 1164 "grammar.tab.c"
     break;
 
   case 11: /* statement: SINGLECOMMENT  */
 #line 63 "compiler/grammar.y"
                         { yyval = ""; }
-#line 1171 "grammar.tab.c"
+#line 1170 "grammar.tab.c"
     break;
 
   case 12: /* statement: expression SEMICOLON  */
 #line 65 "compiler/grammar.y"
                              { yyval = yyvsp[-1]; }
-#line 1177 "grammar.tab.c"
+#line 1176 "grammar.tab.c"
     break;
 
-  case 13: /* std_output: PUTS quotes characters_block quotes  */
+  case 13: /* std_output: PUTS characters_block  */
 #line 69 "compiler/grammar.y"
-                                                { yyval = "cout << \"" + yyvsp[-1] + "\" << endl;"; }
-#line 1183 "grammar.tab.c"
+                                { yyval = "cout << " + yyvsp[0] + " << endl;"; }
+#line 1182 "grammar.tab.c"
     break;
 
   case 14: /* expression: name LEFT_PARENTHESIS RIGHT_PARENTHESIS  */
 #line 73 "compiler/grammar.y"
                                                 { yyval = std::string("\t _") + yyvsp[-2] + "();\n"; }
-#line 1189 "grammar.tab.c"
+#line 1188 "grammar.tab.c"
     break;
 
-  case 15: /* quotes: QUOTES  */
+  case 15: /* characters_block: CHARACTERS_BLOCK  */
 #line 77 "compiler/grammar.y"
-                { yyval = std::string(yytext); }
-#line 1195 "grammar.tab.c"
+                         { yyval = std::string(yytext); }
+#line 1194 "grammar.tab.c"
     break;
 
-  case 16: /* characters_block: name  */
-#line 80 "compiler/grammar.y"
-             { yyval = yyvsp[0]; }
-#line 1201 "grammar.tab.c"
-    break;
-
-  case 17: /* name: NAME  */
-#line 84 "compiler/grammar.y"
+  case 16: /* name: NAME  */
+#line 81 "compiler/grammar.y"
                 {  
 		yyval = std::string(yytext);
 		}
-#line 1209 "grammar.tab.c"
+#line 1202 "grammar.tab.c"
     break;
 
 
-#line 1213 "grammar.tab.c"
+#line 1206 "grammar.tab.c"
 
       default: break;
     }
@@ -1403,7 +1396,7 @@ yyreturn:
   return yyresult;
 }
 
-#line 89 "compiler/grammar.y"
+#line 86 "compiler/grammar.y"
 
 
 void yyerror (char const *x){

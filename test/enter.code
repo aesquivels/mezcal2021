@@ -1,4 +1,4 @@
 enter:->{
 	puts "Hola";
-	puts "QueTal";
+	puts "Que tal estas ";
 }

@@ -18,7 +18,7 @@
 %define api.value.type { std::string }
 
 %token  NAME COLON RIGHT_ARROW LEFT_CURLY_BRACE RIGHT_CURLY_BRACE SEMICOLON LEFT_PARENTHESIS RIGHT_PARENTHESIS SINGLECOMMENT 
-	MULTILINECOMMENT PUTS QUOTES
+	MULTILINECOMMENT PUTS QUOTES CHARACTERS_BLOCK
 
 %start input
 
@@ -66,18 +66,15 @@ statement:
 	;
 
 std_output:
-	PUTS quotes characters_block quotes	{ $$ = "cout << \"" + $3 + "\" << endl;"; }
+	PUTS characters_block	{ $$ = "cout << " + $2 + " << endl;"; }
 	;
 
 expression:
 	name LEFT_PARENTHESIS RIGHT_PARENTHESIS	{ $$ = std::string("\t _") + $1 + "();\n"; }
 	;
 
-quotes:
-	QUOTES	{ $$ = std::string(yytext); }
-
 characters_block: 
-	name { $$ = $1; }
+	CHARACTERS_BLOCK { $$ = std::string(yytext); }
 	;
 
 name:

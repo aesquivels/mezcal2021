@@ -5,6 +5,7 @@
 
 DIGIT [0-9]
 ALPHA [a-zA-Z]
+CHARACTERS_BLOCK {QUOTES}({ALPHA}*{WHITESPACE}*{DIGIT}*)+{QUOTES}
 NAME {ALPHA}([0-9]*{ALPHA}*)+
 WHITESPACE [ \r\t\v\f]
 LINEFEED \n
@@ -22,6 +23,7 @@ QUOTES [\"]
 			//yylval = new compiler::Name(yytext);
 			return NAME; 
 			}
+{CHARACTERS_BLOCK}      { return CHARACTERS_BLOCK; }
 {QUOTES}		{ return QUOTES; }
 {SINGLECOMMENT}         { return SINGLECOMMENT; }
 {MULTILINECOMMENT}      { return MULTILINECOMMENT; }
