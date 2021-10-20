@@ -18,7 +18,13 @@ QUOTES [\"]
 
 %%
 
+"inc"			{ return INC; }
+"dec"			{ return DEC; }
+"gets"			{ return GETS; }
+"stdin"			{ return STDIN; }
 "puts"			{ return PUTS; }
+"Integer"		{ return INTEGER; }
+{DIGIT}+                { return INTEGER_VALUE; }
 {NAME}			{ 
 			//yylval = new compiler::Name(yytext);
 			return NAME; 
@@ -34,6 +40,7 @@ QUOTES [\"]
 "}"			{ return RIGHT_CURLY_BRACE; }
 "("			{ return LEFT_PARENTHESIS; }
 ")"			{ return RIGHT_PARENTHESIS; }
+"$"			{ return DOLLAR_SIGN; }
 {WHITESPACE}
 {LINEFEED}		++yylineno;
 

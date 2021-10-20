@@ -72,7 +72,14 @@ extern int yydebug;
     MULTILINECOMMENT = 267,        /* MULTILINECOMMENT  */
     PUTS = 268,                    /* PUTS  */
     QUOTES = 269,                  /* QUOTES  */
-    CHARACTERS_BLOCK = 270         /* CHARACTERS_BLOCK  */
+    CHARACTERS_BLOCK = 270,        /* CHARACTERS_BLOCK  */
+    INTEGER = 271,                 /* INTEGER  */
+    INTEGER_VALUE = 272,           /* INTEGER_VALUE  */
+    GETS = 273,                    /* GETS  */
+    STDIN = 274,                   /* STDIN  */
+    DOLLAR_SIGN = 275,             /* DOLLAR_SIGN  */
+    INC = 276,                     /* INC  */
+    DEC = 277                      /* DEC  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif

@@ -18,14 +18,14 @@
 %define api.value.type { std::string }
 
 %token  NAME COLON RIGHT_ARROW LEFT_CURLY_BRACE RIGHT_CURLY_BRACE SEMICOLON LEFT_PARENTHESIS RIGHT_PARENTHESIS SINGLECOMMENT 
-	MULTILINECOMMENT PUTS QUOTES CHARACTERS_BLOCK
+	MULTILINECOMMENT PUTS QUOTES CHARACTERS_BLOCK INTEGER INTEGER_VALUE GETS STDIN DOLLAR_SIGN INC DEC
 
 %start input
 
 %%
 
 input:
-	function function_list	{ result = std::string("#include <cstdio>\n #include <iostream>\n using namespace std;") + $1 + $2; }
+	function function_list	{ result = std::string("#include <cstdio>\n #include <iostream>\n using namespace std;\n") + $1 + $2; }
 	;
 
 function_list:
@@ -56,6 +56,12 @@ statements:
 	;
 
 statement:
+	unitaryOperations SEMICOLON { $$ = $1; }
+	|
+	std_input SEMICOLON { $$ = $1; }
+	|
+	definition SEMICOLON { $$ = $1; }
+	|
 	std_output SEMICOLON { $$ = $1; }
 	|
 	MULTILINECOMMENT	{ $$ = ""; }
@@ -65,8 +71,33 @@ statement:
 	expression SEMICOLON { $$ = $1; }
 	;
 
+unitaryOperations:
+	INC identifiers	{ $$ = $2 + "++;\n";}
+	|
+	DEC identifiers { $$ = $2 + "--;\n";}
+
+std_input:
+	GETS STDIN name { $$ = "\t cin >> " + $3 + ";\n"; }
+	;
+
+definition:
+	INTEGER identifiers	{ $$ = "\t int " + $2 + ";\n"; }
+	;
+
+identifiers:
+	identifiers ids	{ $$ = $1 + $2; }
+	|
+	%empty	{ $$ = ""; }
+	;
+
+ids:
+	name	{ $$ = $1; }
+	;
+
 std_output:
-	PUTS characters_block	{ $$ = "cout << " + $2 + " << endl;"; }
+	PUTS characters_block	{ $$ = "\t cout << " + $2 + " << endl;\n"; }
+	|
+	PUTS DOLLAR_SIGN name	{ $$ = "cout << " + $3 + " << endl;"; }
 	;
 
 expression:

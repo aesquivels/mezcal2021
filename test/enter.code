@@ -1,4 +1,19 @@
 enter:->{
-	puts "Hola";
-	puts "Que tal estas ";
+	Integer miNumero;
+
+	puts "Dame un numero del teclado ";
+	gets stdin miNumero;
+
+	puts "El valor que insertaste fue ";
+	puts $miNumero;
+	// 
+	inc miNumero;
+	puts "El numero con incremento es ";
+	puts $miNumero;
+
+	puts "Ahora un decremento ";
+	dec miNumero;
+	puts " el numero vale ";
+	puts $miNumero;
+	// puts "Que tal estas ";
 }
