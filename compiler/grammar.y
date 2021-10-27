@@ -18,7 +18,7 @@
 %define api.value.type { std::string }
 
 %token  NAME COLON RIGHT_ARROW LEFT_CURLY_BRACE RIGHT_CURLY_BRACE SEMICOLON LEFT_PARENTHESIS RIGHT_PARENTHESIS SINGLECOMMENT 
-	MULTILINECOMMENT PUTS QUOTES CHARACTERS_BLOCK INTEGER INTEGER_VALUE GETS STDIN DOLLAR_SIGN INC DEC
+	MULTILINECOMMENT PUTS QUOTES CHARACTERS_BLOCK INTEGER INTEGER_VALUE GETS STDIN DOLLAR_SIGN INC DEC BOOLEAN SET TRUE FALSE ITOB
 
 %start input
 
@@ -56,6 +56,8 @@ statements:
 	;
 
 statement:
+	assignment SEMICOLON { $$ = $1; }
+	|
 	unitaryOperations SEMICOLON { $$ = $1; }
 	|
 	std_input SEMICOLON { $$ = $1; }
@@ -71,16 +73,31 @@ statement:
 	expression SEMICOLON { $$ = $1; }
 	;
 
+assignment:
+	SET name FALSE  { $$ = $2 + "=false; \n"; }
+	|
+	SET name TRUE	{ $$ = $2 + "=true; \n"; }
+	|
+	SET name integer_value { $$ = $2 + "=" + $3 + ";\n";}
+	;
+
+integer_value:
+	INTEGER_VALUE { $$ = std::string(yytext); }
+	;
+
 unitaryOperations:
 	INC identifiers	{ $$ = $2 + "++;\n";}
 	|
 	DEC identifiers { $$ = $2 + "--;\n";}
+	;
 
 std_input:
 	GETS STDIN name { $$ = "\t cin >> " + $3 + ";\n"; }
 	;
 
 definition:
+	BOOLEAN identifiers { $$ = "bool " + $2 + ";\n"; }
+	|
 	INTEGER identifiers	{ $$ = "\t int " + $2 + ";\n"; }
 	;
 
@@ -95,6 +112,10 @@ ids:
 	;
 
 std_output:
+	PUTS ITOB DOLLAR_SIGN name	{ 
+					$$ = "cout << ((" + $4 + "==1) ? \"true\" : \"false\") << endl;"; 
+					}
+	|
 	PUTS characters_block	{ $$ = "\t cout << " + $2 + " << endl;\n"; }
 	|
 	PUTS DOLLAR_SIGN name	{ $$ = "cout << " + $3 + " << endl;"; }

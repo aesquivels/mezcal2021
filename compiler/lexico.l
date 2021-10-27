@@ -18,12 +18,17 @@ QUOTES [\"]
 
 %%
 
+"itob"			{ return ITOB; }
 "inc"			{ return INC; }
 "dec"			{ return DEC; }
 "gets"			{ return GETS; }
 "stdin"			{ return STDIN; }
-"puts"			{ return PUTS; }
+"puts"			{ return PUTS; }	
+"set"			{ return SET; }
 "Integer"		{ return INTEGER; }
+"Boolean"		{ return BOOLEAN; }
+"true"			{ return TRUE; }
+"false"			{ return FALSE; }
 {DIGIT}+                { return INTEGER_VALUE; }
 {NAME}			{ 
 			//yylval = new compiler::Name(yytext);

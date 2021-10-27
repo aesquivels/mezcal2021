@@ -79,7 +79,12 @@ extern int yydebug;
     STDIN = 274,                   /* STDIN  */
     DOLLAR_SIGN = 275,             /* DOLLAR_SIGN  */
     INC = 276,                     /* INC  */
-    DEC = 277                      /* DEC  */
+    DEC = 277,                     /* DEC  */
+    BOOLEAN = 278,                 /* BOOLEAN  */
+    SET = 279,                     /* SET  */
+    TRUE = 280,                    /* TRUE  */
+    FALSE = 281,                   /* FALSE  */
+    ITOB = 282                     /* ITOB  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif

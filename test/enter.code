@@ -1,12 +1,22 @@
 enter:->{
 	Integer miNumero;
+	Boolean bandera;
 
+	set miNumero 10;
+	puts "El valor de la variable miNumero es ";
+	puts $miNumero;
+
+	set bandera false;
+	puts "El valor de la variable bandera es ";
+	puts itob $bandera;
+
+	/*
 	puts "Dame un numero del teclado ";
 	gets stdin miNumero;
-
+	
 	puts "El valor que insertaste fue ";
 	puts $miNumero;
-	// 
+	 
 	inc miNumero;
 	puts "El numero con incremento es ";
 	puts $miNumero;
@@ -15,5 +25,6 @@ enter:->{
 	dec miNumero;
 	puts " el numero vale ";
 	puts $miNumero;
-	// puts "Que tal estas ";
+	puts "Que tal estas ";
+	*/
 }
