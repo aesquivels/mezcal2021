@@ -4,6 +4,9 @@
 int main(int argc, char *argv[]){
 	 int miNumero;
 bool bandera;
+if(1==1){
+	 cout << "Son iguales" << endl;
+}
 miNumero=10;
 	 cout << "El valor de la variable miNumero es " << endl;
 cout << miNumero << endl;bandera=false; 

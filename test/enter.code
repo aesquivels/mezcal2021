@@ -2,6 +2,8 @@ enter:->{
 	Integer miNumero;
 	Boolean bandera;
 
+	if [ 1 -eq 1 ] puts "Son iguales";
+
 	set miNumero 10;
 	puts "El valor de la variable miNumero es ";
 	puts $miNumero;

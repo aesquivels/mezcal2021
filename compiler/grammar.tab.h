@@ -84,7 +84,11 @@ extern int yydebug;
     SET = 279,                     /* SET  */
     TRUE = 280,                    /* TRUE  */
     FALSE = 281,                   /* FALSE  */
-    ITOB = 282                     /* ITOB  */
+    ITOB = 282,                    /* ITOB  */
+    IF = 283,                      /* IF  */
+    LEFT_BRACKET = 284,            /* LEFT_BRACKET  */
+    RIGHT_BRACKET = 285,           /* RIGHT_BRACKET  */
+    EQ = 286                       /* EQ  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif

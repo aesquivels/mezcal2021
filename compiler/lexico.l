@@ -18,6 +18,10 @@ QUOTES [\"]
 
 %%
 
+"["			{ return LEFT_BRACKET; }
+"]"			{ return RIGHT_BRACKET; }
+"if"			{ return IF; }
+"-eq"			{ return EQ; }
 "itob"			{ return ITOB; }
 "inc"			{ return INC; }
 "dec"			{ return DEC; }

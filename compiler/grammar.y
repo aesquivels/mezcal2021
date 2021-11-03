@@ -19,6 +19,7 @@
 
 %token  NAME COLON RIGHT_ARROW LEFT_CURLY_BRACE RIGHT_CURLY_BRACE SEMICOLON LEFT_PARENTHESIS RIGHT_PARENTHESIS SINGLECOMMENT 
 	MULTILINECOMMENT PUTS QUOTES CHARACTERS_BLOCK INTEGER INTEGER_VALUE GETS STDIN DOLLAR_SIGN INC DEC BOOLEAN SET TRUE FALSE ITOB
+	IF LEFT_BRACKET RIGHT_BRACKET EQ
 
 %start input
 
@@ -56,6 +57,8 @@ statements:
 	;
 
 statement:
+	bifurcation { $$ = $1; }
+	|
 	assignment SEMICOLON { $$ = $1; }
 	|
 	unitaryOperations SEMICOLON { $$ = $1; }
@@ -71,6 +74,18 @@ statement:
 	SINGLECOMMENT	{ $$ = ""; }
 	|
 	expression SEMICOLON { $$ = $1; }
+	;
+
+bifurcation:
+	IF LEFT_BRACKET logical_eval RIGHT_BRACKET statement	{ $$ = "if(" + $3 + "){\n" + $5 + "}\n"; }
+	;
+
+logical_eval:
+	integer_value comp_operator integer_value	{ $$ = $1 + $2 + $3; }
+	;
+
+comp_operator:
+	EQ	{ $$ = "=="; }
 	;
 
 assignment:
