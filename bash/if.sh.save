@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#basic if statement
+# eq equal
+# ne not equal
+#gt greather than
+#lt is less than
+#ge greather than or equal to 
+#le less than or equal to
+
+if [ $1 -gt 100 ]
+then
+	echo Hey, that is a great number
+fi
+
+

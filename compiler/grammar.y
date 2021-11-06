@@ -19,7 +19,7 @@
 
 %token  NAME COLON RIGHT_ARROW LEFT_CURLY_BRACE RIGHT_CURLY_BRACE SEMICOLON LEFT_PARENTHESIS RIGHT_PARENTHESIS SINGLECOMMENT 
 	MULTILINECOMMENT PUTS QUOTES CHARACTERS_BLOCK INTEGER INTEGER_VALUE GETS STDIN DOLLAR_SIGN INC DEC BOOLEAN SET TRUE FALSE ITOB
-	IF LEFT_BRACKET RIGHT_BRACKET EQ
+	IF LEFT_BRACKET RIGHT_BRACKET EQ LE LT GT GE NE
 
 %start input
 
@@ -82,10 +82,22 @@ bifurcation:
 
 logical_eval:
 	integer_value comp_operator integer_value	{ $$ = $1 + $2 + $3; }
+	|
+	DOLLAR_SIGN name comp_operator DOLLAR_SIGN name { $$ = $2 + $3 + $5; }
 	;
 
 comp_operator:
 	EQ	{ $$ = "=="; }
+	|
+	LE	{ $$ = "<="; }
+	|
+	LT	{ $$ = "<"; }
+	|
+	GT	{ $$ = ">"; }
+	|
+	GE	{ $$ = ">="; }
+	|
+	NE	{ $$ = "!="; }
 	;
 
 assignment:

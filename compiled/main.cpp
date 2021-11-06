@@ -3,14 +3,18 @@
  using namespace std;
 int main(int argc, char *argv[]){
 	 int miNumero;
+	 int num1;
+	 int num2;
+	 int num3;
 bool bandera;
-if(1==1){
-	 cout << "Son iguales" << endl;
+num1=30;
+num2=20;
+num3=10;
+if(num1>num2){
+if(num1>num3){
+	 cout << "El mayor es num1" << endl;
 }
-miNumero=10;
-	 cout << "El valor de la variable miNumero es " << endl;
-cout << miNumero << endl;bandera=false; 
-	 cout << "El valor de la variable bandera es " << endl;
-cout << ((bandera==1) ? "true" : "false") << endl;
+}
+
 }
 

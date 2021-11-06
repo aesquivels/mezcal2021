@@ -22,6 +22,11 @@ QUOTES [\"]
 "]"			{ return RIGHT_BRACKET; }
 "if"			{ return IF; }
 "-eq"			{ return EQ; }
+"-le"			{ return LE; }
+"-lt"			{ return LT; }
+"-gt"			{ return GT; }
+"-ge"			{ return GE; }
+"-ne"			{ return NE; }
 "itob"			{ return ITOB; }
 "inc"			{ return INC; }
 "dec"			{ return DEC; }
