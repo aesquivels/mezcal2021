@@ -1,50 +1,5 @@
 enter:->{
-	Integer miNumero;
-	Integer num1;
-	Integer num2;
-	Integer num3;
-	Boolean bandera;
-
-	set num1 30;
-	set num2 20;
-	set num3 10;
-
-	if [ $num1 -gt $num2 ]
-		if [ $num1 -gt $num3]
-			puts "El mayor es num1";
-	
-	//TAREA
-	/*
-	if [ $num1 -ne $num2 ] {
-		puts "Son diferentes";
-		puts "other statement";
-	} else {
-		//false statements block
-	}
-	*/
-	set miNumero 10;
-	puts "El valor de la variable miNumero es ";
-	puts $miNumero;
-
-	set bandera false;
-	puts "El valor de la variable bandera es ";
-	puts itob $bandera;
-
-	/*
-	puts "Dame un numero del teclado ";
-	gets stdin miNumero;
-	
-	puts "El valor que insertaste fue ";
-	puts $miNumero;
-	 
-	inc miNumero;
-	puts "El numero con incremento es ";
-	puts $miNumero;
-
-	puts "Ahora un decremento ";
-	dec miNumero;
-	puts " el numero vale ";
-	puts $miNumero;
-	puts "Que tal estas ";
-	*/
+miArreglo:Integer[10];
+miArreglo:[0,10];
+puts $miArreglo,0;
 }

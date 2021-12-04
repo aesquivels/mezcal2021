@@ -19,7 +19,7 @@
 
 %token  NAME COLON RIGHT_ARROW LEFT_CURLY_BRACE RIGHT_CURLY_BRACE SEMICOLON LEFT_PARENTHESIS RIGHT_PARENTHESIS SINGLECOMMENT 
 	MULTILINECOMMENT PUTS QUOTES CHARACTERS_BLOCK INTEGER INTEGER_VALUE GETS STDIN DOLLAR_SIGN INC DEC BOOLEAN SET TRUE FALSE ITOB
-	IF LEFT_BRACKET RIGHT_BRACKET EQ LE LT GT GE NE
+	IF LEFT_BRACKET RIGHT_BRACKET EQ LE LT GT GE NE COMMA
 
 %start input
 
@@ -101,6 +101,10 @@ comp_operator:
 	;
 
 assignment:
+ids COLON LEFT_BRACKET integer_value COMMA integer_value RIGHT_BRACKET {
+	$$ = $1 + "[" + $4 + "]=" + $6 + ";\n";
+}
+	|
 	SET name FALSE  { $$ = $2 + "=false; \n"; }
 	|
 	SET name TRUE	{ $$ = $2 + "=true; \n"; }
@@ -123,6 +127,10 @@ std_input:
 	;
 
 definition:
+	ids COLON INTEGER LEFT_BRACKET integer_value RIGHT_BRACKET {
+		$$ = "int " + $1 + "[" + $5 + "];\n";
+	}
+	|
 	BOOLEAN identifiers { $$ = "bool " + $2 + ";\n"; }
 	|
 	INTEGER identifiers	{ $$ = "\t int " + $2 + ";\n"; }
@@ -139,6 +147,10 @@ ids:
 	;
 
 std_output:
+	PUTS DOLLAR_SIGN ids COMMA integer_value {
+	$$ = "cout << \"Hola\" << endl;\n/Users/aesquivels/GrailsProjects/vagrant "; 
+	}
+	|
 	PUTS ITOB DOLLAR_SIGN name	{ 
 					$$ = "cout << ((" + $4 + "==1) ? \"true\" : \"false\") << endl;"; 
 					}

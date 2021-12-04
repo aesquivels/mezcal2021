@@ -18,6 +18,7 @@ QUOTES [\"]
 
 %%
 
+","			{ return COMMA; }
 "["			{ return LEFT_BRACKET; }
 "]"			{ return RIGHT_BRACKET; }
 "if"			{ return IF; }

@@ -93,7 +93,8 @@ extern int yydebug;
     LT = 288,                      /* LT  */
     GT = 289,                      /* GT  */
     GE = 290,                      /* GE  */
-    NE = 291                       /* NE  */
+    NE = 291,                      /* NE  */
+    COMMA = 292                    /* COMMA  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
